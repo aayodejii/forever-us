@@ -1,73 +1,38 @@
-# React + TypeScript + Vite
+# Forever Us
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+I built this while talking with my partner. We wanted a simple way to see how many days we've been together and how far apart we are at any given moment. Thought others might find it useful too.
 
-Currently, two official plugins are available:
+A beautiful app for couples to track the number of days they've been together and see how far apart they are in real time.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- **Day Counter**: See exactly how long you've been together, broken down into years, months, and days, with a smooth animated count-up
+- **Distance Apart**: Automatically detects your location and calculates the distance to your partner using the Haversine formula
+- **Persistent Storage**: Your data is saved locally so it survives page refreshes
+- **Romantic Design**: Warm gradients, glassmorphism cards, floating hearts, and elegant typography
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+- React + TypeScript
+- Tailwind CSS v4
+- Vite
+- Browser Geolocation API
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Getting Started
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Open the app and fill in your details: your name, your partner's name, when you started dating, and your partner's location (city + coordinates). Your own location is detected automatically via the browser.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## How Distance Works
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+The app uses the browser's Geolocation API to get your current position, and you provide your partner's coordinates during setup. Distance is calculated using the [Haversine formula](https://en.wikipedia.org/wiki/Haversine_formula), which gives the great-circle distance between two points on a sphere.
+
+Your partner can find their coordinates by long-pressing their location in Google Maps and copying the lat/lng values.
+
+## License
+
+MIT
